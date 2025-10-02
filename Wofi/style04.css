@@ -1,0 +1,61 @@
+window {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    background-color: rgba(10, 10, 25, 0.7); /* nearly fully transparent overlay */
+    box-shadow: none;
+    width: 80vw;
+    height: 80vh;
+}
+
+mainbox {
+    background: transparent;
+    border: none;
+    margin: 0 auto;
+    width: 25vw; /* set width so the list stays compact and centered horizontally */
+    /* width: 25px; /* set width so the list stays compact and centered horizontally */ 
+}
+
+listbox {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+inputbar {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    font-size: 1.2em;
+    font-family: "JetBrainsMono", "monospace", "sans-serif";
+    margin-bottom: 12px;
+    box-shadow: none;
+}
+
+element {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    font-size: 1.12em;
+    padding: 0.22em 0.8em;
+}
+
+element selected {
+    background: rgba(110, 120, 250, 0.12);
+    border-radius: 6px;
+    color: #bbaaff;
+}
+
+element-text {
+    color: inherit;
+    background: transparent;
+}
+
+element-icon {
+    background: transparent;
+}
+
+#message {
+    background: transparent;
+    color: #ccc;
+}

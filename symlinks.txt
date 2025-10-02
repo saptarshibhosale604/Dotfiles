@@ -1,0 +1,25 @@
+-- Waybar
+ln -s ~/Dotfiles/Waybar ~/.config/waybar
+
+-- Hypr
+ln -s ~/Dotfiles/Hypr ~/.config/hypr
+
+-- Wofi
+ln -s ~/Dotfiles/Wofi ~/.config/wofi
+
+-- Nvim
+ln -s ~/Dotfiles/Nvim ~/.config/nvim
+
+-- Kitty
+ln -s ~/Dotfiles/Kitty ~/.config/kitty
+
+-- Htop
+ln -s ~/Dotfiles/Htop ~/.config/htop
+
+-- Zshrc
+ln -s ~/Dotfiles/Zshrc/zshrc ~/.zshrc
+
+-- Bashrc
+ln -s ~/Dotfiles/Bashrc/bashrc ~/.bashrc
+
+

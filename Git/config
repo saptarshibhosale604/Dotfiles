@@ -1,0 +1,21 @@
+# This is Git's per-user configuration file.
+
+[user]
+# Please adapt and uncomment the following lines:
+	name = saptarshibhosale604
+	email = saptarshibhosale604@gmail.com
+[core]
+	editor = nvim -f
+
+[alias]
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
+
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = main
+

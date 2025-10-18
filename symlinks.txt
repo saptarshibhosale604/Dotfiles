@@ -22,4 +22,7 @@ ln -s ~/Dotfiles/Zshrc/zshrc ~/.zshrc
 -- Bashrc
 ln -s ~/Dotfiles/Bashrc/bashrc ~/.bashrc
 
+-- Git
+ln -s ~/Dotfiles/Git/config ~/.gitconfig
+
 

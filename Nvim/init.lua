@@ -215,6 +215,8 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.api.nvim_set_keymap("i", ";;", "<Esc>", { noremap = true })
 vim.api.nvim_set_keymap("t", ";;", "<C-\\><C-n>", { noremap = true }) -- terminal normal mode
 
+vim.o.shell = "/bin/zsh"
+
 -- export GEMINI_API_KEY=AIzaSyBwIrjcMjKA1V3XJ_hCLurJx33wh33NWdk
 vim.env.GEMINI_API_KEY = "AIzaSyBwIrjcMjKA1V3XJ_hCLurJx33wh33NWdk"
 vim.env.TAVILY_API_KEY = "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"

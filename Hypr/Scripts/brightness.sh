@@ -5,9 +5,12 @@ function notify_brightness() {
   MAX_BRIGHTNESS=$(brightnessctl max)
   CURRENT_BRIGHTNESS=$(brightnessctl get) 
 
-  BRIGHTNESS_PERCENT=$(bc <<< "scale=1; "$CURRENT_BRIGHTNESS" / "$MAX_BRIGHTNESS" * 100")
+  # BRIGHTNESS_PERCENT=$(bc <<< "scale=1; "$CURRENT_BRIGHTNESS" / "$MAX_BRIGHTNESS" * 100")
+  BRIGHTNESS_PERCENT=$(bc <<< "$CURRENT_BRIGHTNESS * 100 / $MAX_BRIGHTNESS" | cut -d. -f1)
+
   # dunstify -t 3000 -a "  Brightness" -h int:value:"$BRIGHTNESS_PERCENT" "%"
-  dunstify -t 3000 -a " Brightness" -h int:value:"$BRIGHTNESS_PERCENT" "%"
+  dunstify -t 3000 -a " Brightness" -h int:value:"$BRIGHTNESS_PERCENT" "$BRIGHTNESS_PERCENT%" -r 9990
+  # dunstify -t 3000 -a " Brightness" int:value:"$BRIGHTNESS_PERCENT" -h int:value:"$BRIGHTNESS_PERCENT" -r 9990
 }
 
 # Check command line arguments

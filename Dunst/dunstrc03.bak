@@ -1,0 +1,33 @@
+[global]
+width = 450
+height = 160
+origin = top-right
+offset = 10x10
+notification_limit = 5
+font = JetBrainsMono Nerd Font Propo 20
+corner_radius = 6
+timeout = 5
+transparency = 10
+background = "#212121"
+foreground = "#ebdbb2"
+frame_color = "#665c54"
+layer = overlay
+
+[urgency_low]
+background = "#212121"
+foreground = "#a89984"
+frame_color = "#504945"
+timeout = 3
+
+[urgency_normal]
+background = "#212121"
+foreground = "#ebdbb2"
+frame_color = "#665c54"
+timeout = 5
+
+[urgency_critical]
+background = "#cc241d"
+foreground = "#ffffff"
+frame_color = "#fb4934"
+timeout = 0
+

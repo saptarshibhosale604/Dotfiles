@@ -4,6 +4,8 @@
 # GitHub: https://github.com/FlareXes/dotfiles/blob/main/.scripts/change-wall.sh
 # Description: A hyprpaper script to updates the current wallpaper.
 
+notify-send "Wallpaper changing ..." -u normal -t 3000 -r 9995
+ 
 # Check for required dependencies
 dependencies=("convert" "file" "hyprpaper")
 
@@ -39,7 +41,8 @@ wallpaper_dir="$HOME/Pictures/Wallpaper"
 # If no argument provided, pick a random wallpaper from the directory
 if [ -z "$1" ]; then
     # Find files in wallpaper_dir (modify pattern as needed for image extensions)
-    files=("$wallpaper_dir"/*.{jpg,jpeg,png,bmp,gif})
+    # files=("$wallpaper_dir"/*.{jpg,jpeg,png,bmp,gif})
+    files=("$wallpaper_dir"/*.{jpg,png})
     
     # Remove files that don't exist if glob didn't match
     files=( "${files[@]}" )
@@ -51,7 +54,7 @@ if [ -z "$1" ]; then
     # Pick a random file
     input_file="${files[RANDOM % ${#files[@]}]}"
 else
-    input_file="$1"
+    input_file="$wallpaper_dir/$1"
     # Check if the file exists
     if [ ! -f "$input_file" ]; then
         echo "Error: File not found: $input_file"
@@ -60,6 +63,7 @@ else
     fi
 fi
 
+# input_file="$1"
 echo "Selected wallpaper: $input_file"
 
 # Proceed with changing wallpaper using $input_file
@@ -98,4 +102,4 @@ sleep 1;
 hyprpaper &
 
 echo "[SUCCESS] Wallpaper updated successfully."
-
+notify-send "Wallpaper changed" -u normal -t 2000 -r 9995

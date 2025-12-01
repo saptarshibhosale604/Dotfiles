@@ -17,7 +17,8 @@
         "keyboard-state",
         // "sway/mode",
         // "sway/scratchpad",
-        "custom/media"
+        "custom/media",
+		"hyprland/window"
     ],
 	// "workspaces": {
 	// 	"disable-click": false,
@@ -43,7 +44,7 @@
         // "idle_inhibitor",
         "pulseaudio",
         "network",
-        "clock",
+        // "clock",
         // "backlight",
         // "sway/language",
 		// "bluetooth",
@@ -88,6 +89,9 @@
     //         "default": ""
     //     }
     // },
+	"hyprland/window": {
+		"format": "{title}"
+	},
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -185,12 +189,12 @@
 	// 	// "tooltip-format": "{:%a}\n{:%d %b %Y}\n{:%H:%M}"
 	// 	"tooltip-command": "date '+%a\n%d %b %Y\n%H:%M'"
 	// },
-	"clock": {
-	  "format": "{:%H:%M}",
-	  "interval": 60,
-	  "tooltip": true,
-	  "tooltip-format": "{:%a}\n{:%d %b %Y}\n{:%H:%M}"
-	},
+	// "clock": {
+	//   "format": "{:%H:%M}",
+	//   "interval": 60,
+	//   "tooltip": true,
+	//   "tooltip-format": "{:%a}\n{:%d %b %Y}\n{:%H:%M}"
+	// },
 
 	// "custom/clock": {
 	// 	"exec": "date '+%a %b %d %H:%M:%S %Z %Y'",
@@ -244,8 +248,8 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        "format-good": "", // An empty format will hide the module
-        "format-full": "",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "battery#bat2": {

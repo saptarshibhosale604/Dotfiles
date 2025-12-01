@@ -1,3 +1,7 @@
+@define-color foreground #f3f4ae;
+@define-color background #0a0a0d;
+@define-color accent #5E613E; /* example from color1 */
+
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     /* font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
@@ -10,6 +14,8 @@
 
 window#waybar {
 	background-color: transparent;
+	/* background-color: @background; */
+	/* background-color: #ffffff; */
 	border-radius: 10px;
 	margin-bottom: 18px;
     /* background-color: rgba(43, 48, 59, 0.5); */
@@ -148,9 +154,10 @@ button:hover {
 }
 
 #battery {
-    /* background-color: #0B0509; */
+    background-color: #0B0509;
     /* background-color: #26A65B; */
-    color: #000000;
+    /* color: #000000; */
+    color: #ffffff;
 }
 
 #battery.charging {
@@ -378,6 +385,7 @@ label:focus {
     background-color: #0069d4;
 }
 
+#battery,
 #cpu,
 #memory,
 #temperature,

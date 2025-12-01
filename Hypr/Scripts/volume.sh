@@ -5,9 +5,18 @@ function notify_volume() {
   MAX_VOLUME=100
   CURRENT_VOLUME=$( pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | sed 's/%//' ) 
 
-  VOLUME_PERCENT=$(bc <<< "scale=1; "$CURRENT_VOLUME" / "$MAX_VOLUME" * 100")
+  # VOLUME_PERCENT=$(bc <<< "scale=1; "$CURRENT_VOLUME" / "$MAX_VOLUME" * 100")
+  VOLUME_PERCENT=$(bc <<< "$CURRENT_VOLUME * 100 / $MAX_VOLUME" | cut -d. -f1)
+
+  #
   # dunstify -t 3000 -a "  Brightness" -h int:value:"$VOLUME_PERCENT" "%"
-  dunstify -t 3000 -a " Volume" -h int:value:"$VOLUME_PERCENT" "%"
+  # dunstify -t 3000 -i audio-volume-high -a " Volume" -h int:value:"$VOLUME_PERCENT" "%" -r 9992
+  dunstify -t 3000 -i audio-volume-high -a " Volume" -h int:value:"$VOLUME_PERCENT" "$VOLUME_PERCENT%" -r 9992
+
+  # BRIGHTNESS_PERCENT=$(bc <<< "$CURRENT_BRIGHTNESS * 100 / $MAX_BRIGHTNESS" | cut -d. -f1)
+
+  # dunstify -t 3000 -a "  Brightness" -h int:value:"$BRIGHTNESS_PERCENT" "%"
+  # dunstify -t 3000 -a " Brightness" -h int:value:"$BRIGHTNESS_PERCENT" "$BRIGHTNESS_PERCENT%" -r 9990
 }
 
 # Function to get the current volume

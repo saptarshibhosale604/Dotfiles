@@ -1,18 +1,38 @@
--- -- --README.md
---
+-- -- -- README.md Sat 18 Oct 11:19:08 IST 2025
+-- -- Prerequesite for ubuntu linux
+-- nvim version >= 10
+-- sudo apt install clang
+
 -- -- Plugins
--- Cursor Animation
--- Avante AI code generation/ completition
--- Focused window width incrementor
+-- Plugin: Cursor Animation
+-- Plugin: cmdline in the center
+-- Plugin: Markdown renderer
+-- Plugin: Avante AI code generation/ completition
+-- Plugin: Focused window width incrementor
+-- Plugin: markdown headers jump, no use
 
 -- -- Keybindings
--- Save the session
--- terminal normal mode
+-- Keybindings: Save the session 02
+-- Keybindings: terminal normal mode
+-- Keybindings: toggle wrap
+-- Keybindings: tab setting
+--
+-- -- Customized options
+-- set terminal powershell, disabled
+-- set foldmethod
 -- sync ssh rpi clipboard with kitty arch clipboard using osc52
---[[
 
+-- -- Backup cmds
+-- Company pc:
+-- date +'%Y%m%d_%H%M%S' // do this manually first , 20250808_181925
+-- Get-Date -Format "yyyyMMdd_HHmmss" // powershell cmd , 20250815_104416
+-- cp Microsoft.PowerShell.Core\FileSystem::\\wsl.localhost\podman-machine-default\home\user\.config\nvim\init.lua C:\Users\2261395\ProjectWork\Background\Backup\NvimConfig\init_.lua.bak
+-- cd C:\Users\2261395\ProjectWork\Background\Backup\NvimConfig
+--
 -- -- Todo
--- :qa => save the session + qa
+-- leader tz // toggle zen mode=> tb + tt
+
+--[[
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -104,8 +124,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
--- vim.g.have_nerd_font = false
-vim.g.have_nerd_font = true
+vim.g.have_nerd_font = false
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -152,6 +171,13 @@ vim.opt.clipboard:append("unnamedplus")
 
 -- Enable break indent
 vim.o.breakindent = true
+
+-- Keybindings: tab setting
+-- vim.o.expandtab = false -- not working
+-- set noexpandtab -- this is working
+vim.opt.expandtab = false -- not working
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
 -- Save undo history
 vim.o.undofile = true
@@ -232,17 +258,26 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 vim.api.nvim_set_keymap("i", ";;", "<Esc>", { noremap = true })
-vim.api.nvim_set_keymap("t", ";;", "<C-\\><C-n>", { noremap = true }) -- terminal normal mode
-
--- export GEMINI_API_KEY=AIzaSyBwIrjcMjKA1V3XJ_hCLurJx33wh33NWdk
-vim.env.GEMINI_API_KEY = "AIzaSyBwIrjcMjKA1V3XJ_hCLurJx33wh33NWdk"
-vim.env.TAVILY_API_KEY = "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"
+--
+-- Keybindings: terminal normal mode
+vim.api.nvim_set_keymap("t", ";;", "<C-\\><C-n>", { noremap = true })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+
+-- set terminal powershell, disabled
+-- vim.opt.shell = "powershell.exe" -- this is working
+-- vim.opt.shell = "powershell.exe"
+-- vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "& { . ''C:\\Users\\2261395\\OneDrive - Cognizant\\Projects\\CMD\\bat\\shortcutFunction.ps1''; $args }"'
+-- vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "& { . ''C:\\Users\\2261395\\OneDrive - Cognizant\\Projects\\CMD\\bat\\shortcutFunction.ps1''; $args }"' -- this is not working
+vim.opt.shellquote = ""
+vim.opt.shellxquote = ""
+
+-- set foldmethod
+vim.opt.foldmethod = "indent"
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -274,11 +309,6 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
--- vim.opt.expandtab = true
-
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -292,7 +322,7 @@ vim.opt.softtabstop = 4
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-	"NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
+	-- "NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
 
 	-- NOTE: Plugins can also be added by using a table,
 	-- with the first argument being the link and the following
@@ -396,15 +426,60 @@ require("lazy").setup({
 		},
 	},
 
-	-- Cursor Animation
+	-- Plugin: For cursor animation
 	{
+		enabled = false,
 		"sphamba/smear-cursor.nvim",
 		event = "VimEnter",
 		opts = {},
 	},
 
-	-- Avante AI code generation/ completition
+	-- Plugin: markdown renderer
+	{
+		"MeanderingProgrammer/markdown.nvim",
+		name = "render-markdown",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("render-markdown").setup({})
+		end,
+	},
+
+	-- Plugin: markdown headers jump // not working as expected
+	-- {
+	-- 	"preservim/vim-markdown",
+	-- 	ft = "markdown", -- load only for markdown files for performance
+	-- },
+	--
+	-- {
+	--   'iamcco/markdown-preview.nvim',
+	--   build = 'cd app && npm install',
+	--   ft = 'markdown',
+	--   config = function()
+	--     vim.fn["mkdp#util#install"]()
+	--   end,
+	-- },
+	--
+	-- Plugin: cmdline in the center
+	{
+		"folke/noice.nvim",
+		event = "vimenter", -- sets the loading event to 'VimEnter'
+		opts = {
+			cmdline = {
+				view = "cmdline_popup",
+				opts = {
+					position = {
+						row = "20%", -- positions the cmdline popup at 40% of the screen height (a bit above mid which is 50%)
+						col = "50%", -- horizontal center
+						-- You can also add other options like size here
+					},
+				},
+			},
+		},
+	},
+
+	-- Plugin: Avante AI code generation/ completition
 	-- export GEMINI_API_KEY=AIzaSyBwIrjcMjKA1V3XJ_hCLurJx33wh33NWdk
+	-- export TAVILY_API_KEY=tvly-kX76LCz C36oih0u9COcf6oa53A47MX0g
 
 	{
 		"yetone/avante.nvim",
@@ -447,7 +522,7 @@ require("lazy").setup({
 		},
 	},
 
-	-- Focused window width incrementor
+	-- Plugin: Focused window width incrementor
 
 	{
 		"nvim-focus/focus.nvim",
@@ -547,7 +622,8 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			-- vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -572,15 +648,18 @@ require("lazy").setup({
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
 			end, { desc = "[S]earch [N]eovim files" })
 
-			-- Shortcut for logseq/pages/temp.md file
-			vim.keymap.set("n", "<leader>st", function()
-				vim.cmd("edit /mnt/c/Users/2261395/LOGSEG/pages/temp.md")
-			end, { desc = "Open temp.md file" })
+			-- Shortcut for logseq/pages/GlobalTranfer.md file
+			vim.keymap.set("n", "<leader><leader>", function()
+				vim.cmd("tabedit /mnt/c/Users/2261395/LOGSEG/pages/GlobalTranfer.md")
+			end, { desc = "Open GlobalTranfer.md file" })
 
-			-- Shortcut for saving the session
+			-- Keybindings: Save the session 02
 			vim.keymap.set("n", "<leader>sts", function()
+				-- vim.cmd("mksession!")
+				-- vim.cmd("wa | mksession!")
+				vim.cmd("wa")
 				vim.cmd("mksession!")
-				print("Session saved! `:qa` to quit and save")
+				print("Files Saved, Session saved! `:qa` to quit and save")
 			end, { desc = "[S]ave [T]he [S]ession" })
 
 			-- Shortcut for opening the current file in new tab, not working
@@ -588,6 +667,20 @@ require("lazy").setup({
 			-- <C-w-T> // this is working
 			--
 			--
+			-- Keybindings: toggle wrap
+			vim.keymap.set("n", "<leader>tw", function()
+				vim.wo.wrap = not vim.wo.wrap
+			end, { desc = "[T]oggle [W]rap" })
+
+			-- Keybindings: Toggle Status Bar
+			vim.keymap.set("n", "<leader>ts", function()
+				vim.o.laststatus = vim.o.laststatus == 0 and 2 or 0
+			end, { desc = "Toggle Status Bar" })
+
+			-- Keybindings: Toggle Tab Bar
+			vim.keymap.set("n", "<leader>tt", function()
+				vim.o.showtabline = vim.o.showtabline == 0 and 2 or 0
+			end, { desc = "Toggle Tab Bar" })
 		end,
 	},
 

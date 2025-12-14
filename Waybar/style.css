@@ -394,5 +394,5 @@ label:focus {
 #custom-change-wallpapers,
 #network,
 #power-profiles-daemon {
-    opacity: 0;
+    opacity: 1;
 }

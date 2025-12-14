@@ -175,3 +175,6 @@ alias rm='trash'
 alias trash-size="du -sh ~/.local/share/Trash/files"
 
 alias appAndroidStudio='~/Downloads/Softwares/android-studio/bin/studio'
+
+export PATH="$PATH:/home/ssbArch/Dotfiles/Nvim/Scripts"
+export PATH="$PATH:/home/ssbArch/Dotfiles/Hypr/Scripts"

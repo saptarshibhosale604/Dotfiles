@@ -16,6 +16,7 @@
 -- Keybindings: terminal normal mode
 -- Keybindings: toggle wrap
 -- Keybindings: tab setting
+-- Keybindings: Snippets
 --
 -- -- Customized options
 -- set terminal powershell, disabled
@@ -262,6 +263,27 @@ vim.api.nvim_set_keymap("i", ";;", "<Esc>", { noremap = true })
 -- Keybindings: terminal normal mode
 vim.api.nvim_set_keymap("t", ";;", "<C-\\><C-n>", { noremap = true })
 
+-- Keybindings: Snippets
+-- vim.keymap.set("n", ",input", function()
+-- 	vim.cmd("read ~/Dotfiles/Nvim/Snippets/input.py")
+-- 	vim.api.nvim_feedkeys("f:", "n", true)
+-- end, { noremap = true, silent = false })
+-- Works in BOTH normal (n) and insert (i) modes
+-- Set higher timeout for insert mode sequences
+vim.o.timeout = true
+vim.o.timeoutlen = 2000 -- 2 seconds to type ",input"
+
+vim.keymap.set("i", ",input", function()
+	-- Exit insert mode first
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+
+	vim.cmd("read ~/Dotfiles/Nvim/Snippets/input.py")
+	-- vim.api.nvim_feedkeys("f:", "n", true)
+	-- vim.api.nvim_feedkeys("<Esc>f:", "n", true)
+	vim.api.nvim_feedkeys('f"', "n", true)
+end, { noremap = true, silent = false })
+
+--
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })

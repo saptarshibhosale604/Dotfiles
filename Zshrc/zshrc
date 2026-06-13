@@ -89,6 +89,9 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='nvim'
 # fi
+export EDITOR=nvim
+export VISUAL=nvim
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -107,11 +110,53 @@ source $ZSH/oh-my-zsh.sh
 #
 
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#     _         _        _                 _ _ 
+#    / \  _   _| |_ ___ | | ___   __ _  __| (_)_ __   __ _ 
+#   / _ \| | | | __/ _ \| |/ _ \ / _` |/ _` | | '_ \ / _` |
+#  / ___ \ |_| | || (_) | | (_) | (_| | (_| | | | | | (_| |
+# /_/   \_\__,_|\__\___/|_|\___/ \__,_|\__,_|_|_| |_|\__, |
+#                                                    |___/
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+autoload -Uz compinit
+compinit
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#    _  __          _     _           _ _                    #
+#   | |/ /___ _   _| |__ (_)_ __   __| (_)_ __   __ _ ___    #
+#   | ' // _ \ | | | '_ \| | '_ \ / _` | | '_ \ / _` / __|   #
+#   | . \  __/ |_| | |_) | | | | | (_| | | | | | (_| \__ \   #
+#   |_|\_\___|\__, |_.__/|_|_| |_|\__,_|_|_| |_|\__, |___/   #
+#             |___/                             |___/        #
+#                                                            #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+         
+bindkey '^[[Z' autosuggest-accept
+
+
+# # # # # # # # # # # # # # # # # 
+#     ___  _   _                  #
+#    / _ \| |_| |__   ___ _ __    #
+#   | | | | __| '_ \ / _ \ '__|   #
+#   | |_| | |_| | | |  __/ |      #
+#    \___/ \__|_| |_|\___|_|      #
+#                                 #
+#                                 #
+# # # # # # # # # # # # # # # # # 
+
+
 ### Custom scripts
 
 ## Background scripts 
 # Cooling fan control python script based on cpu temperature
 lxterminal -e "python /home/ssbrpi/ProjectRpi/Rpi/Background/tempMeasurement.py"
+# lxterminal -e "sudo python /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/main.py"
+
+alias pythonCustomKeyboard='sudo python /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/main.py'
+alias cdCustomKeyboard='cd /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/'
 
 alias v='nvim'
 
@@ -122,7 +167,6 @@ alias dockerPersonalAssistant="sudo docker rm ollamaLocal -f && \
 sudo docker run -d --rm -v ollama:/root/.ollama -v /home/ssbrpi/ProjectRpi:/root/ProjectRpi/ -p 11434:11434 --name ollamaLocal personal_assistant && \
 sudo docker exec -it ollamaLocal sh -c '. /root/.profile; exec sh -l'"
 
-
 ## Git
 alias gs='git status'
 alias ga='git add'
@@ -130,3 +174,16 @@ alias gc='git commit'
 alias gp='git push'
 alias gauth='. ./GitAuthentication/gitAuthentication.sh'
 
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../../../'
+
+# Quick small tasks
+alias c='clear'
+
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+# OpenClaw Completion
+# source "/home/ssbrpi/.openclaw/completions/openclaw.zsh"
+
+alias info="/home/ssbrpi/ProjectRpi/Rpi/rpiPerformance.sh"

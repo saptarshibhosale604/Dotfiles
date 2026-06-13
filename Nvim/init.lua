@@ -4,9 +4,9 @@
 -- sudo apt install clang
 
 -- -- Plugins
--- Plugin: Cursor Animation
+-- Plugin: For cursor animation
 -- Plugin: cmdline in the center
--- Plugin: Markdown renderer
+-- Plugin: markdown renderer, disabled
 -- Plugin: Avante AI code generation/ completition
 -- Plugin: Focused window width incrementor
 -- Plugin: markdown headers jump, no use
@@ -271,7 +271,17 @@ vim.api.nvim_set_keymap("t", ";;", "<C-\\><C-n>", { noremap = true })
 -- Works in BOTH normal (n) and insert (i) modes
 -- Set higher timeout for insert mode sequences
 vim.o.timeout = true
-vim.o.timeoutlen = 2000 -- 2 seconds to type ",input"
+vim.o.timeoutlen = 1000 -- 2 seconds to type ",input"
+
+vim.keymap.set("i", ",print", function()
+	-- Exit insert mode first
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+
+	vim.cmd("read ~/Dotfiles/Nvim/Snippets/print.py")
+	-- vim.api.nvim_feedkeys("f:", "n", true)
+	-- vim.api.nvim_feedkeys("<Esc>f:", "n", true)
+	vim.api.nvim_feedkeys('f"', "n", true)
+end, { noremap = true, silent = false })
 
 vim.keymap.set("i", ",input", function()
 	-- Exit insert mode first
@@ -450,21 +460,21 @@ require("lazy").setup({
 
 	-- Plugin: For cursor animation
 	{
-		enabled = false,
+		enabled = true,
 		"sphamba/smear-cursor.nvim",
 		event = "VimEnter",
 		opts = {},
 	},
 
 	-- Plugin: markdown renderer
-	{
-		"MeanderingProgrammer/markdown.nvim",
-		name = "render-markdown",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("render-markdown").setup({})
-		end,
-	},
+	-- {
+	-- 	"MeanderingProgrammer/markdown.nvim",
+	-- 	name = "render-markdown",
+	-- 	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	-- 	config = function()
+	-- 		require("render-markdown").setup({})
+	-- 	end,
+	-- },
 
 	-- Plugin: markdown headers jump // not working as expected
 	-- {

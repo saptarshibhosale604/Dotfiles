@@ -131,8 +131,11 @@ alias ls='ls --color=auto'
 ## Background scripts 
 # Cooling fan control python script based on cpu temperature
 lxterminal -e "python /home/ssbrpi/ProjectRpi/Rpi/Background/tempMeasurement.py"
+lxterminal -e "sudo python /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/main.py"
 
 alias v='nvim'
+
+alias pythonKeyboard='sudo python /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/HIDPi/library/main.py'
 
 # Personal Assistant
 alias cdPersonalAssistant='cd ~/ProjectRpi/Rpi/PersonalAssistant/'
@@ -141,7 +144,6 @@ alias dockerPersonalAssistant="sudo docker rm ollamaLocal -f && \
 sudo docker run -d --rm -v ollama:/root/.ollama -v /home/ssbrpi/ProjectRpi:/root/ProjectRpi/ -p 11434:11434 --name ollamaLocal personal_assistant && \
 sudo docker exec -it ollamaLocal sh -c '. /root/.profile; exec sh -l'"
 
-
 ## Git
 alias gs='git status'
 alias ga='git add'
@@ -149,3 +151,6 @@ alias gc='git commit'
 alias gp='git push'
 alias gauth='. ./GitAuthentication/gitAuthentication.sh'
 
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+alias info="/home/ssbrpi/ProjectRpi/Rpi/rpiPerformance.sh"

@@ -148,26 +148,28 @@ bindkey '^[[Z' autosuggest-accept
 # # # # # # # # # # # # # # # # # 
 
 
-### Custom scripts
+# Info
+alias infoRpi="/home/ssbrpi/ProjectRpi/Rpi/rpiPerformance.sh"
+alias infoServices="systemctl list-units --type=service --state=running"
 
-## Background scripts 
-# Cooling fan control python script based on cpu temperature
-lxterminal -e "python /home/ssbrpi/ProjectRpi/Rpi/Background/tempMeasurement.py"
-# lxterminal -e "sudo python /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/library/main.py"
+# Logs
+alias logTempMeasurement='tail -f /home/ssbrpi/ProjectRpi/Rpi/Background/Logs/tempMeasurement_$(date +%F).log'
 
+# Python
 alias pythonCustomKeyboard='sudo python /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/main.py'
+
+# Directories
 alias cdCustomKeyboard='cd /home/ssbrpi/ProjectRpi/Rpi/CustomKeyboard/'
+alias cdPersonalAssistant='cd ~/ProjectRpi/Rpi/PersonalAssistant/'
+# system.md files /etc/systemd/system
 
 alias v='nvim'
-
-# Personal Assistant
-alias cdPersonalAssistant='cd ~/ProjectRpi/Rpi/PersonalAssistant/'
 
 alias dockerPersonalAssistant="sudo docker rm ollamaLocal -f && \
 sudo docker run -d --rm -v ollama:/root/.ollama -v /home/ssbrpi/ProjectRpi:/root/ProjectRpi/ -p 11434:11434 --name ollamaLocal personal_assistant && \
 sudo docker exec -it ollamaLocal sh -c '. /root/.profile; exec sh -l'"
 
-## Git
+# Git
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
@@ -181,9 +183,44 @@ alias ...='cd ../../../'
 # Quick small tasks
 alias c='clear'
 
-export PATH="$HOME/.npm-global/bin:$PATH"
 
 # OpenClaw Completion
 # source "/home/ssbrpi/.openclaw/completions/openclaw.zsh"
+# export PATH="$HOME/.npm-global/bin:$PATH"
 
-alias info="/home/ssbrpi/ProjectRpi/Rpi/rpiPerformance.sh"
+
+# Welcome message
+
+clear
+
+echo "========================================="
+# echo "        ███████╗███████╗██████╗"
+# echo "        ██╔════╝██╔════╝██╔══██╗"
+# echo "        ███████╗███████╗██████╔╝"
+# echo "        ╚════██║╚════██║██╔══██╗"
+# echo "        ███████║███████║██████╔╝"
+# echo "        ╚══════╝╚══════╝╚═════╝"
+echo ""
+echo "🟢 Welcome back, "
+echo " _____   _____   _____"
+echo "/  ___| /  ___| | __  |"
+echo "\\ \`--.  \\ \`--.  | |_/ /"
+echo " \`--. \\  \`--. \\ | ___ \\"
+echo "/\\__/ / /\\__/ / | |_/ /"
+echo "\\____/  \\____/  \\____/"
+echo ""
+echo ""
+echo "⚡ Environment initialized successfully."
+echo "📅 $(date '+%A, %d %B %Y')"
+echo "🕒 $(date '+%H:%M:%S')"
+echo "💻 Happy coding!"
+echo "========================================="
+echo ""
+# echo ""
+# echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+# echo "👋 Welcome SSB!"
+# echo "✅ Your configuration has been loaded."
+# echo "📅 $(date '+%A, %d %B %Y')"
+# echo "🕒 $(date '+%I:%M:%S %p')"
+# echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+# echo ""

@@ -178,3 +178,8 @@ alias appAndroidStudio='~/Downloads/Softwares/android-studio/bin/studio'
 
 export PATH="$PATH:/home/ssbArch/Dotfiles/Nvim/Scripts"
 export PATH="$PATH:/home/ssbArch/Dotfiles/Hypr/Scripts"
+
+alias personalAssistant="cd ~/PersonalAssistant && source venv/bin/activate && python -m UI.cli"
+alias customKeyboard="sudo python ~/CustomKeyboard/main.py"
+
+
